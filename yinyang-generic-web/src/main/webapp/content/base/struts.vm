@@ -1,0 +1,45 @@
+<html>
+	<head>
+        <title>struts</title>
+		<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+    </head>
+
+	<body>
+		<ul class="nav nav-pills">
+			<li class="funcnav" id="liDoc"><a href="#">文档-spring</a></li>
+			<li class="funcnav" id="liFaq"><a href="#">FAQ</a></li>
+		</ul>
+		
+		<div class="hero-unit span9 funcinfo" id="functionDoc">
+			$docHtml
+		</div>
+		<div class="hero-unit span9 funcinfo" id="functionFaq">
+			$faqHtml
+		</div>
+		
+		<script>
+		$(function(){
+			$(".funcnav").click(function(){
+				$(".funcinfo").hide();
+				$(".funcnav").removeClass("active");
+				$(this).addClass("active");
+				console.log("function" + $(this).attr("id").substring(2));
+				var showid= "function" + $(this).attr("id").substring(2);
+				$("#" + showid).show();
+			});
+			
+			$("#liDemo").click();
+		});
+    </script>
+    </body>
+	
+</html>
+	

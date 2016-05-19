@@ -1,0 +1,591 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.dhgate</groupId>
+		<artifactId>superPOM</artifactId>
+		<version>1.1-SNAPSHOT</version>
+	</parent>
+	
+	<groupId>com.yinyang</groupId>
+	<artifactId>yinyang-generic-web</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>yinyang-generic-web</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<struts2.version>2.3.15.1</struts2.version>
+		<spring.version>3.0.5.RELEASE</spring.version>
+		
+		<!-- dao-impl -->
+		<ehcache-core.version>2.5.0</ehcache-core.version>
+	    <ehcache-terracotta.version>2.5.0</ehcache-terracotta.version>
+	    <terracotta-toolkit-1.4-runtime.version>4.0.0</terracotta-toolkit-1.4-runtime.version>
+	    <ehcache-spring-annotations.version>1.2.0</ehcache-spring-annotations.version>
+	</properties>
+	
+	<profiles>
+		<profile>
+			<id>default-tools.jar</id>
+			<activation>
+				<property>
+					<name>java.vendor</name>
+					<value>Sun Microsystems Inc.</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- com.dhgate -->
+		<dependency>
+			<groupId>com.dhgate</groupId>
+			<artifactId>dhgate-common</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.taobao.diamond</groupId>
+			<artifactId>diamond-client</artifactId>
+			<version>2.0.5.3.taocode-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.taobao.diamond</groupId>
+			<artifactId>diamond-utils</artifactId>
+			<version>2.0.5.3.taocode-SNAPSHOT</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>com.dhgate</groupId>
+			<artifactId>dhgate-sellerauth-api</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+				
+		<dependency>
+			<groupId>com.dhgate</groupId>
+			<artifactId>dhgate-merchant-api</artifactId>
+			<version>2.0-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+             <groupId>com.dhgate</groupId>
+             <artifactId>dhgate-redis</artifactId>
+             <version>1.3.6-SNAPSHOT</version>
+             <exclusions>
+				<exclusion>
+				    <groupId>org.codehaus.jackson</groupId>
+					<artifactId>jackson-mapper-lgpl</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.codehaus.jackson</groupId>
+					<artifactId>jackson-core-lgpl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency> 
+		<!-- poi -->
+		<dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.7</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.7</version>
+        </dependency>
+		
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<!-- add dao impl applicationContext-ehcache.xml 用到 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-asm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-instrument</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+			<version>${struts2.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-convention-plugin</artifactId>
+			<version>${struts2.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-json-plugin</artifactId>
+			<version>${struts2.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-sitemesh-plugin</artifactId>
+			<version>${struts2.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-spring-plugin</artifactId>
+			<version>${struts2.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.4</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
+			<version>2.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.velocity</groupId>
+					<artifactId>velocity</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.struts</groupId>
+					<artifactId>struts-taglib</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
+			<version>2.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.velocity</groupId>
+					<artifactId>velocity</artifactId>
+				</exclusion>
+				<!-- 
+				<exclusion>
+					<groupId>org.apache.struts</groupId>
+					<artifactId>struts-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.struts</groupId>
+					<artifactId>struts-tiles</artifactId>
+				</exclusion> -->
+				<exclusion>
+					<groupId>org.apache.struts</groupId>
+					<artifactId>struts-taglib</artifactId>
+				</exclusion>
+				<!-- <exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion> -->
+			</exclusions>
+		</dependency>
+
+		<!-- add by huangdongming for syi validator -->
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+		<!-- add dao impl -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+			<version>1.8.1</version>
+		</dependency>
+		<!-- add by huangdongming for syi validator -->
+		<dependency>
+			<groupId>net.sf.flexjson</groupId>
+			<artifactId>flexjson</artifactId>
+			<version>2.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.dhgate</groupId>
+			<artifactId>skeleton-cache</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.dhgate</groupId>
+			<artifactId>skeleton-configuration</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.3</version>
+			<classifier>jdk15</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.dhgate</groupId>
+			<artifactId>skeleton-web</artifactId>
+			<version>1.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>markdown4j</groupId>
+			<artifactId>markdown4j</artifactId>
+			<version>1.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.aspectj</groupId > 
+			<artifactId>aspectjweaver</artifactId > 
+			<version>1.6.11</version >
+		</dependency>
+		
+		<dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <version>2.1_3</version>
+        </dependency>	
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.dhgate</groupId>
+			<artifactId>exceptionadapter</artifactId>
+			<version>1.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.6</version>
+		</dependency>
+		
+		
+		<!-- dao-impl -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>ejb3-persistence</artifactId>
+			<version>1.0.2.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.4.0.GA</version>
+		</dependency>
+				
+		
+		<!-- <dependency>
+			<groupId>com.dhgate</groupId>
+			<artifactId>dhgate-redis</artifactId>
+			<version>1.3.4</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.codehaus.jackson</groupId>
+					<artifactId>jackson-mapper-lgpl</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.codehaus.jackson</groupId>
+					<artifactId>jackson-core-lgpl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency> -->
+		
+		
+		<dependency>
+			<groupId>com.dhgate</groupId>
+			<artifactId>dhgate-serviceframework</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.dhgate</groupId>
+			<artifactId>dhgate-sellerpay-api</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.dhgate</groupId>
+			<artifactId>dhgate-memcache</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.24</version>
+		</dependency>
+		
+		<dependency>
+	      <groupId>net.sf.ehcache</groupId>
+	      <artifactId>ehcache-core</artifactId>
+	      <version>${ehcache-core.version}</version>
+	    </dependency>      
+ 
+ 		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.7</version>
+		</dependency>
+	    
+	    <dependency>
+		  <groupId>com.googlecode.ehcache-spring-annotations</groupId>
+		  <artifactId>ehcache-spring-annotations</artifactId>
+		  <version>${ehcache-spring-annotations.version}</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>net.sf.json-lib</groupId>
+		  <artifactId>json-lib</artifactId>
+		  <version>2.2.3</version>
+		  <classifier>jdk15</classifier>
+		</dependency>
+		
+		<dependency>
+		  <groupId>com.capinfo</groupId>
+		  <artifactId>crypt-md5</artifactId>
+		  <version>1.0.0</version>
+		</dependency>
+		
+		<!-- struts2路径查看包   用于调试 no action -->
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-config-browser-plugin</artifactId>
+			<version>2.3.15</version>
+		</dependency>
+				
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.26</version>
+				<configuration>
+					<scanIntervalSeconds>0</scanIntervalSeconds>
+					<scanTargets>
+						<scanTarget>src/main/webapp/WEB-INF/web.xml</scanTarget>
+						<scanTarget>src/main/resources/struts.xml</scanTarget>
+					</scanTargets>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.oracle</groupId>
+						<artifactId>ojdbc14</artifactId>
+						<version>10.2.0.4.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>server-copy</id>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-jsch</artifactId>
+						<version>1.8.3</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<!-- 解决项目没报错，项目名称上有小红叉 -->
+			<!-- 保存，项目构建完成后在项目文件夹上点右键，选择Maven->Update Project Configuration，问题解决。 -->
+			<plugin>  
+		        <groupId>org.apache.maven.plugins</groupId>  
+		        <artifactId>maven-compiler-plugin</artifactId>  
+		        <!-- <version>2.3.2</version> -->  
+		        <configuration>  
+		            <source>1.6</source>  
+		            <target>1.6</target>  
+		        </configuration>  
+		    </plugin>
+			 <plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+		         <version>2.5</version>
+		           <configuration>
+                   <filesets>
+                        <fileset>
+                            <directory>src/main/webapp/WEB-INF/lib</directory>
+                            <includes>
+                                 <include>**/*</include>
+                             </includes>                                 
+                             <followSymlinks>false</followSymlinks>          
+                          </fileset>
+						  <fileset>
+                            <directory>src/main/webapp/WEB-INF/classes</directory>
+                            <includes>
+                                 <include>**/*</include>
+                             </includes>                                 
+                             <followSymlinks>false</followSymlinks>          
+                          </fileset>
+                    </filesets>                                                                             </configuration>
+			 </plugin>
+		</plugins>
+	</build>
+
+</project>

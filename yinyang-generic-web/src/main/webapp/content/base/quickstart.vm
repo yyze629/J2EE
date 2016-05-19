@@ -1,0 +1,46 @@
+<html>
+	<head>
+        <title>配置测试页</title>
+		<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+    </head>
+
+	<body>
+		<ul class="nav nav-pills">
+			<li class="funcnav" id="liDemo"><a href="#">构建一个拥有全功能的项目</a></li>
+			<li class="funcnav" id="liDoc"><a href="#">如何在一个空项目中增加功能</a></li>
+		</ul>
+		
+		<div class="hero-unit span9 funcinfo" id="functionDemo">
+			$doc1Html
+		</div>
+		
+		<div class="hero-unit span9 funcinfo" id="functionDoc">
+			$doc2Html
+		</div>
+		
+		<script>
+		$(function(){
+			$(".funcnav").click(function(){
+				$(".funcinfo").hide();
+				$(".funcnav").removeClass("active");
+				$(this).addClass("active");
+				console.log("function" + $(this).attr("id").substring(2));
+				var showid= "function" + $(this).attr("id").substring(2);
+				$("#" + showid).show();
+			});
+			
+			$("#liDemo").click();
+		});
+    </script>
+    </body>
+	
+</html>
+	

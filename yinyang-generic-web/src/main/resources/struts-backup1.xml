@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 指定由spring负责action对象的创建 -->
+
+    <constant name="struts.objectFactory" value="spring" />
+
+    <!-- 所有匹配*.action的请求都由struts2处理，可以扩展 -->
+
+    <constant name="struts.action.extension" value="action" />
+
+    <!-- 是否启用开发模式，上线时一般不需要开启，开发时获取更多的日志信息 -->
+
+    <constant name="struts.devMode" value="true" />
+
+    <!-- struts配置文件改动后，是否重新加载 -->
+
+    <constant name="struts.configuration.xml.reload" value="true" />
+
+    <!-- 设置浏览器是否缓存静态内容 -->
+
+    <constant name="struts.serve.static.browserCache" value="false" />
+
+    <!-- 请求参数的编码方式 -->
+
+    <constant name="struts.i18n.encoding" value="utf-8" />
+
+    <!-- 每次HTTP请求系统都重新加载资源文件，有助于开发 -->
+
+    <constant name="struts.i18n.reload" value="true" />
+
+    <!-- 文件上传最大值 -->
+
+    <constant name="struts.multipart.maxSize" value="104857600" />
+
+
+    <!-- 让struts2支持动态方法调用，在调用时使用userAction !login .action方式进行调用 -->
+
+    <!-- Action名称中是否还是用斜线 -->
+
+    <constant name="struts.enable.SlashesInActionNames" value="false" />
+
+    <!-- 允许标签中使用表达式语法 -->
+
+    <constant name="struts.tag.altSyntax" value="true" />
+
+    <!-- 对于WebLogic,Orion,OC4J此属性应该设置成true -->
+
+    <constant name="struts.dispatcher.parametersWorkaround" value="false" />
+    
+    <!-- 相当于普通xml配置中的extends，指定默认的继承包 -->
+	<constant name="struts.convention.default.parent.package" value="struts-default" />
+	<!-- 结果资源所在路径，这个地方要注意，详见下面解释 -->
+	<constant name="struts.convention.result.path" value="/content/" />
+	<!-- 指定以那些后缀结尾的java类package包被搜索，以发现注解 -->
+	<constant name="struts.convention.package.locators" value="web,action" />
+</struts>

@@ -1,0 +1,26 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>网上支付-业务回调</title>
+	<meta charset="utf-8">	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/syi/matrix/jquery-1.5.1.min.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/syi/matrix/jquery.simplemodal2.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/syi/matrix/json2.min.js?version=$!{jsversion}"></script>
+</head>
+<body>
+	
+	<form name="form" action="$!{callBackForm.callBackURL}" method="post"> 
+		<br/><input type="hidden" name="orderNumber" value="$!{callBackForm.orderNumber}"/><!-- 收货人姓名 -->
+		<br/><input type="hidden" name="status" value="$!{callBackForm.status}"/>		<!-- 商户编号 -->
+		<br/><input type="hidden" name="remarks" value="$!{callBackForm.remarks}"/>		<!-- 订单编号 -->
+		<br/><input type=hidden value="提交"> 
+	</form>
+	<script type="text/javascript">
+		document.form.submit();
+    </script>
+	<script type="text/javascript" src="$request.contextPath/js/payease/selectbank.js?version=$!{jsversion}"></script>
+</body>
+</html>
+

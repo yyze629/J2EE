@@ -1,0 +1,884 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>上架的产品</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource}/dhs/mos/css/inbox/remind.css?version=$!{jsversion}" />
+    <!-- 日历插件样式 -->
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource}/2008/web20/seller/css/jquery-calendar.css?version=$!{jsversion}" />
+    <!-- 对应my-products.js -->
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource}/2008/web20/seller/css/my-products.css?version=$!{jsversion}" />
+    <!-- 按钮样式 -->
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource}/2008/web20/seller/css/seller_button.css?version=$!{jsversion}" />
+    <!-- 一般的弹出层 -->
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource_css}/seller/product/managementproducts/general_popup_box.css?version=$!{jsversion}" />
+    <!-- 右侧产品一部分样式 -->
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource_css}/seller/product/managementproducts/changeprice.css?version=$!{jsversion}" />
+    <!-- 商品等级弹出层样式 -->
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource_css}/seller/syi/commodityGrade/commodityGrade.css?version=$!{jsversion}" />
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource_css}/seller/product/aftersaleservice/aftersaleservice.css?version=$!{jsversion}" />
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource_css}/seller/product/managementproducts/lscommon.css?version=$!{jsversion}" />
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource_css}/seller/product/managementproducts/productManagement.css?version=$!{jsversion}" />
+	##<link rel="stylesheet" type="text/css" href="http://$!{dhresource_css}/seller/multilanguage/multilanguage.css?version=$!{jsversion}" />
+	##<link href="http://$!{dhresource}/dhs/mos/css/product/product.css?version=$!{jsversion}" rel="stylesheet" type="text/css" />
+	##<link href="http://$!{dhresource_css}/seller/product/changeprice/changeprice.css?version=$!{jsversion}" rel="stylesheet" type="text/css"/>
+	
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/jquery/jquery.cookie.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/util.js?version=$!{jsversion}"></script>		
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/picture.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/my-product.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/jquery-time.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/syi/matrix/jquery.simplemodal2.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/syi/matrix/json2.min.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/syi/matrix/2013-07-16/app_zh_CN_product.js?version=$!{jsversion}"></script>
+	##<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/syi/matrix/2013-07-16/tools/DHGatePlugin.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource_js}/seller/product/DHGatePlugin.js?version=$!{jsversion}"></script>
+
+	
+	<script type="text/javascript" src="$request.contextPath/js/shelf/productshelf.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource}/dhs/fob/js/global/dhgate.cookie-1.0.js?version=$!{jsversion}"></script>
+	#if($!{prodShelfForm.databaseAvailable} == "0" || $!{prodShelfForm.databaseAvailable} == "1" || $!{prodShelfForm.databaseAvailable} == "2")
+		<script type="text/javascript" src="http://$!{dhresource}/dhs/mos/js/onekey/20140227r/onekey.js?version=$!{jsversion}"></script>
+	#else
+		<script type="text/javascript" src="http://$!{dhresource}/dhs/mos/js/onekey/20140227/onekey.js?version=$!{jsversion}"></script>
+	#end
+	<meta charset="utf-8">	
+		
+</head>
+<body>
+	
+	<form id="prodShelfForm" name="prodShelfForm" method="post" action="/prodmanage/shelf/prodShelf.do?dhpath=10001,21001,0202">
+		<input type="hidden" id="vipMessageShow" name="vipMessageShow" value="$!vipMessageShow" />
+		<input type="hidden" name="prodShelfForm.changeProdGroupId" value="$!{prodShelfForm.changeProdGroupId}" id="changeProdGroupId"/>
+		<input type="hidden" name="prodShelfForm.dispatcheOperation" value="$!{prodShelfForm.dispatcheOperation}" id="dispatcheOperation"/>
+		<input type="hidden" name="prodShelfForm.hasOperationTip" value="$!{prodShelfForm.hasOperationTip}" id="hasOperationTip"/>
+		<input type="hidden" name="prodShelfForm.operationTip" value="$!{prodShelfForm.operationTip}" id="operationTip"/>
+		<input type="hidden" name="prodShelfForm.sortType" value="$!{prodShelfForm.sortType}" id="sortType"/>
+		<input type="hidden" name="prodShelfForm.sortField" value="$!{prodShelfForm.sortField}" id="sortField"/>
+		<input type="hidden" name="prodShelfForm.isNewVersion" value="$!{prodShelfForm.isNewVersion}" id="isNewVersion"/>
+		<input type="hidden" name="prodShelfForm.searchUsedFlag" value="$!{prodShelfForm.searchUsedFlag}" id="searchUsedFlag"/>
+		<input type="hidden" name="prodShelfForm.isGuidePageShow" value="$!{prodShelfForm.isGuidePageShow}" id="isGuidePageShow"/>
+		<input type="hidden" name="prodShelfForm.hasGoldStallAuthority" value="$!{prodShelfForm.hasGoldStallAuthority}" id="hasGoldStallAuthority"/>
+		<input type="hidden" name="prodShelfForm.databaseAvailable" value="$!{prodShelfForm.databaseAvailable}" id="databaseAvailable"/>
+		<input type="hidden" name="prodShelfForm.supplierIdentityState" value="$!{prodShelfForm.supplierIdentityState}" id="supplierIdentityState"/>
+		<input type="hidden" name="prodShelfForm.isStudentSupplier" value="$!{prodShelfForm.isStudentSupplier}" id="isStudentSupplier"/>
+		<input type="hidden" name="prodShelfForm.isMoreSearchConditions" value="$!{prodShelfForm.isMoreSearchConditions}" id="isMoreSearchConditions"/>
+		<div class="col-boxpd col-linebom" style="position: relative;">
+          <h2>管理产品 - 已上架</h2>
+		  #if($!{factoryregtype} == "1")
+			<span style="position: absolute; top: 0px; right: 0px; font-size: 12px; color: rgb(102, 102, 102);">增值服务专享客服电话：<b>400-706-6600</b></span>
+		  #end
+        </div>     
+		<div class="ls-part">
+			<div class="col-sailtips clearfix">
+				<span class="leftcol-tip"> 温馨提示：</span>
+				<div class="rightcol-tip">
+					<p id="hideTipsBox" class="addheight">
+						1.您添加的产品需要通过审核后才能上架交易，审核时间通常在24-28个小时之内，遇特殊情况会稍有延迟，敬请谅解。<br /> 
+						2.请核对您添加的产品是否符合<a href="http://seller.dhgate.com/policy/110305.html" target="_blank" > 敦煌网产品发布规则</a> ，不符合规则的产品将不能通过审核<br /> 
+						3.现在起您发布的上架产品都能够展示在店铺中了！同时还能设置加载搜索产品，获取更多曝光率！<a href="http://seller.dhgate.com/help/c0303/16643.html" target="_blank" >了解更多</a>
+					</p>
+					<span class="viewticps viewshow " id="viewTips">展开</span>
+				</div>
+			</div>
+			<div class="rtab-warp" id="newGuideTarget2">
+				<ul>
+					<li class="current">
+						<a href="/prodmanage/shelf/prodShelf.do?dhpath=10001,21001,0202">
+    						<span id="shelfProductNum">
+    							#set($productCount="0")
+    							#if($pageInfo.pageBean.count)
+    								#if($pageInfo.pageBean.count < 10000)
+    									#set($productCount = $!decimalFormat.format($pageInfo.pageBean.count))
+    								#elseif($pageInfo.pageBean.count == 10000)
+    									#set($productCount = $!decimalFormat.format(10000))
+    								#else
+    									#set($productCount = $!decimalFormat.format(10000)+"+")
+    								#end
+    							#end
+    							已上架<b>$productCount</b>
+    						</span>
+						</a>
+					</li>
+					<li>
+						<a href="/prodmanage/audit/prodAudit.do?dhpath=10001,21001,0202">
+    						<span id="auditProductNum">
+    							#set($auditProductCount="0")
+    							#if($prodShelfForm.totalAuditProductNum)
+    								#if($prodShelfForm.totalAuditProductNum < 10000)
+    									#set($auditProductCount = $!decimalFormat.format($prodShelfForm.totalAuditProductNum))
+    								#elseif($prodShelfForm.totalAuditProductNum == 10000)
+    									#set($auditProductCount = $!decimalFormat.format(10000))
+    								#else
+    									#set($auditProductCount = $!decimalFormat.format(10000)+"+")
+    								#end
+    							#end
+    							待审核<b>$auditProductCount</b>
+    						</span>
+						</a>
+					</li>
+					<li>
+						<a href="/prodmanage/audit/prodAuditFail.do?dhpath=10001,21001,0202">
+    						<span id="auditFailProductNum">
+    							#set($auditFailProductCount="0")
+    							#if($prodShelfForm.totalAuditFailProductNum)
+    								#if($prodShelfForm.totalAuditFailProductNum < 10000)
+    									#set($auditFailProductCount = $!decimalFormat.format($prodShelfForm.totalAuditFailProductNum))
+    								#elseif($prodShelfForm.totalAuditFailProductNum == 10000)
+    									#set($auditFailProductCount = $!decimalFormat.format(10000))
+    								#else
+    									#set($auditFailProductCount = $!decimalFormat.format(10000)+"+")
+    								#end
+    							#end
+    							审核未通过<b>$auditFailProductCount</b>
+    						</span>
+						</a>
+					</li>
+					<li>
+						<a href="/prodmanage/downshelf/prodDownShelf.do?dhpath=10001,21001,0202">
+    						<span id="downShelfProductNum">
+    							#set($downShelfProductCount="0")
+    							#if($prodShelfForm.totalDownShelfProductNum)
+    								#if($prodShelfForm.totalDownShelfProductNum < 10000)
+    									#set($downShelfProductCount = $!decimalFormat.format($prodShelfForm.totalDownShelfProductNum))
+    								#elseif($prodShelfForm.totalDownShelfProductNum == 10000)
+    									#set($downShelfProductCount = $!decimalFormat.format(10000))
+    								#else
+    									#set($downShelfProductCount = $!decimalFormat.format(10000)+"+")
+    								#end
+    							#end
+    							已下架<b>$downShelfProductCount</b>
+    						</span>
+						</a>
+					</li>
+					<li style="display:none;">
+						<a href="javascript:void(0);">
+							<span>草稿箱<b>20</b></span>
+						</a>
+					</li>
+				</ul>
+				<div class="propbox tipstion">
+					<input type="button" class="j-onekey" value="一键修改" />
+				</div>
+                <div class="propbox tipstion">
+                    <input type="button" class="j-btn-batchattr" value="批量修改属性值" title="增强产品完整度，提高产品曝光量。" />
+                    <!-- 新增一键修改tip -->
+                </div>
+			</div>
+			<div id="newGuideTarget3" class="condbox clearfix searchConditions">
+				<div id="j-lsStop" #if($!{prodShelfForm.isMoreSearchConditions} == 0) class="ls123" #end>
+                    <p class="lsPone">
+						<span class="tname">关键词：</span>
+							<input type="text" id="productName" name="prodShelfForm.productName" class="cond-input condwid1 defaultcolor" data-value="输入产品名或关键词" value="#if($!{prodShelfForm.productName})$!{prodShelfForm.productName}#else输入产品名或关键词#end" />
+						<span class="tname">产品组：</span>
+            				<select name="" id="firSelectproductgroup" class="j-select-root mksearchselect addwid113"></select>
+            				<select name="" id="secSelectprouctgroup" class="j-select-sub mksearchselect addwid113" style="display:none;"></select>
+            	            <input type="hidden" class="j-select-hidden" id="selectproductgroup" name="prodShelfForm.selectedProdGroupId" value="$!{prodShelfForm.selectedProdGroupId}" >
+						<span class="clickSpanOne" #if($!{prodShelfForm.isMoreSearchConditions} == 1) style="display:none;"#end>
+                            <span class="lsBtnOne">
+                            <input name="searchSubmitbtn" type="button" value="搜索">
+                            </span>
+                            <span class="lsBtnTwo">
+                                <input name="searchResetbtn"  type="button" value="重置">
+                            </span>
+                        </span>
+                        <span id="j-clickOpen" class="lsStopTwo #if($!{prodShelfForm.isMoreSearchConditions} == 0)lsStopThree #end">#if($!{prodShelfForm.isMoreSearchConditions} == 0)更多搜索条件 #else 收起搜索条件#end <b></b></span>
+                    </p>
+                    <p class="lsPone">
+						<span class="tname">产品编号：</span>
+							<input type="text" id="searchItemcode" name="prodShelfForm.itemcode" class="cond-input condwid1 defaultcolor" data-value="输入完整产品编号" value="#if($!{prodShelfForm.itemcode})$!{prodShelfForm.itemcode}#else输入完整产品编号#end"/>
+                        
+						<span class="tname">商品编码：</span>
+							<input type="text" id="searchSkuCode" name="prodShelfForm.skuCode" class="cond-input condwid1 defaultcolor" data-value="输入商品编码" value="#if($!{prodShelfForm.skuCode})$!{prodShelfForm.skuCode}#else输入商品编码#end"/>
+                        <span class="tname">到期时间：</span>
+            				<select class="listing-box addwid113" name="prodShelfForm.vaildday" id="productVaildday">
+            					<option value="0">所有</option>
+            					<option value="3" #if(${prodShelfForm.vaildday} == 3) selected #end>3天内将过期</option>
+            					<option value="7" #if(${prodShelfForm.vaildday} == 7) selected #end>7天内将过期</option>
+            					<option value="30" #if(${prodShelfForm.vaildday} == 30) selected #end>30天内将过期</option>
+            				</select>
+					</p>
+					<p class="lsPone">
+						<span class="tname">更新日期：</span>
+            				<input type="text" class="cond-input condwid3 calendarFocus timeImg" name="prodShelfForm.operateDateBeginStr" id="operateDateBegin"  value="$!{prodShelfForm.operateDateBeginStr}" readonly/>
+							<span>到</span>
+            				<input type="text" class="cond-input condwid3 calendarFocus timeImg" name="prodShelfForm.operateDateEndStr"  id="operateDateEnd"  value="$!{prodShelfForm.operateDateEndStr}" readonly/>
+            			<span class="tname">上架时间：</span>
+            				<input type="text" class="cond-input condwid3 calendarFocus timeImg" name="prodShelfForm.onShelfBeginDateStr" id="onshelfbegindate" value="$!{prodShelfForm.onShelfBeginDateStr}" readonly/>
+            				<span>到</span>
+            				<input type="text" class="cond-input condwid3 calendarFocus timeImg" name="prodShelfForm.onShelfEndDateStr"  id="onshelfenddate" value="$!{prodShelfForm.onShelfEndDateStr}" readonly/>
+					</p>
+                    <p>
+						<span class="tname">评分因子：</span>
+            				<select id="scoreItem" class="listing-box addwid113" name="prodShelfForm.scoreItem">
+            					<option id="allScoreItem" value="0">所有</option>
+            					<option value="1" #if(${prodShelfForm.scoreItem} == 1) selected #end>图片</option>
+            					<option value="2" #if(${prodShelfForm.scoreItem} == 2) selected #end>标题</option>
+                                <option value="3" #if(${prodShelfForm.scoreItem} == 3) selected #end>短描</option>
+            				    <option value="4" #if(${prodShelfForm.scoreItem} == 4) selected #end>选填参数填写率</option>
+            					<option value="5" #if(${prodShelfForm.scoreItem} == 5) selected #end>物流方式</option>
+            				</select>
+						<span class="tname">产品评分：</span>
+            				<input type="text" id="scoreStart" class="cond-input condwid3" name="prodShelfForm.scoreStart" value="$!{prodShelfForm.scoreStart}" />
+            				<span>到</span>
+            				<input type="text" id="scoreEnd" class="cond-input condwid3" name="prodShelfForm.scoreEnd" value="$!{prodShelfForm.scoreEnd}" />
+                        <span class="clickSpanTwo">
+    						<span class="lsBtnOne">
+    							<input type="button" value="搜索" name="searchSubmitbtn" >
+                            </span>
+                            <span class="lsBtnTwo">
+    							<input type="button" value="重置" name="searchResetbtn">
+                            </span>
+						</span>
+                    </p>
+            	</div>
+        	</div>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#j-clickOpen").click(function(){
+    					var lsStop=$("#j-lsStop");
+    					var clickOpen=$("#j-clickOpen");
+    					if(lsStop.hasClass('ls123')==''){
+    						lsStop.addClass("ls123");
+    						$(clickOpen).addClass("lsStopThree");
+    						$(clickOpen).text("更多搜索条件");
+    						$(".clickSpanOne").show();
+							$("#isMoreSearchConditions").val(0);
+    						}else{0
+    							lsStop.removeClass("ls123");
+    							$(clickOpen).removeClass("lsStopThree");
+    							$(clickOpen).text("收起搜索条件");
+    							$(".clickSpanOne").hide();
+								$("#isMoreSearchConditions").val(1);
+    							}
+    						});
+                });
+            </script>
+			<div class="viewmsg">
+				<b class="ls-bviewmsg"></b>
+				<p class="addheight"> 
+					您当前商品有&nbsp<b class="orange">$!{prodShelfForm.quickAuditProdNumber}</b> 个已经享受了快速审核服务，占现有产品量的<b class="orange">$!number.format($!{prodShelfForm.quickAuditPct})%</b> 。
+					<a href="http://seller.dhgate.com/policy/110313.html#policy_php-policyleft-16" target="_blank" class="color36c">（如何享受快速审核服务）</a>
+				</p>
+				<div class="averageGrade tipstion j-tip-container">
+					可添加上架产品：
+					<span class="greenword">#if($!{prodShelfForm.isHonestSeller} == 1) 无限 #else 10000 #end</span>
+					<span class="maglr2">|</span>
+					#if($!prodAverageScore)
+					已上架产品的总评分平均值：
+					<span class="orange j-tip-trigger">$!{prodAverageScore} 分</span>
+					<span class="maglr2">|</span>
+					<span style="display: block; left:298px; top:26px;" class="tiparrow-posbox">
+						<div style="width:278px;display:none;" class="tiparrow-box clearfix j-tip-content">
+							您好，您的可售卖产品信息平均得分为
+							<span class="orgfont">
+								$!{prodAverageScore} 分
+							</span> ，
+							<br> 目前平台产品信息平均得分为85分，产品评分越高，产品曝光率越高。
+								<div style="left: 15px;" class="tiparrow-t">
+								</div>
+                    	</div>
+                	</span>
+					#end
+					<div class="express-group">
+						<a href="/marketweb/trafficbus/pageload.do?dhpath=10004,33">流量快车产品<span class="green">（免费）</span></a>
+						<span class="caret" id="trafficbus"></span>
+						<div class="express-dropdown" style="display:none">
+							<ul>
+								<li>
+									<a href="/marketweb/trafficbus/pageload.do?dhpath=10004,33"> 流量快车产品（免费）</a>
+								</li>
+								#if($!{prodShelfForm.hasGoldStallAuthority} == "1")
+									<li>
+										<a href="/prodmanage/shelf/prodGoldStall.do?dhpath=10004,2610" id="showGoldProduct">类目黄金展位产品</a>
+									</li>
+								#end
+							</ul>
+						</div>
+					</div>
+					<span class="rightbtnbox" style="float: right;">默认按更新日期排序</span>
+            	</div>
+            </div>
+        <!-- 列表 开始 -->
+        <div class="bg-list">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr class="ls-tableth">
+					<th colspan="3" class="ls-oneth">产品信息</th>
+					<th class="ls-twoth">产品组</th>
+					<th class="ls-threeth">订单数</th>
+					#set($expireDateSortClass = "sortImgOne")
+					#if("expireDate" == $!{prodShelfForm.sortField}) 
+						#if($!{prodShelfForm.sortType} =="1") 
+							#set($expireDateSortClass = "sortImgTwo")
+						#else 
+							#set($expireDateSortClass = "sortImgThree")	
+						#end 
+					#else 
+						#set($expireDateSortClass = "sortImgOne")	
+					#end
+					<th class="ls-fourth ">
+						<span id="sort_expireDate">
+							有效期<b class="$expireDateSortClass"></b>
+						</span>
+					</th>
+					<th class="ls-fiveth">
+						操作<b></b>
+					</th>
+				</tr>
+				<tr class="btngroup">
+					<td class="padleft20">
+						<input name="checkAllProducts" type="checkbox" value=""/>
+					</td>
+					<td colspan="6">
+						<span class="col-mgright10">全选</span>
+						<input type="button" class="j-change-group ls-bottonTwo" value="调整产品组" />
+						<input type="button" class=" ls-bottonTwo" name="btn_vaildday" value="更新有效期" />
+						<input type="button" class=" ls-bottonTwo" name="btn_batchUpdate" value="批量修改" />
+						<input type="button" class=" ls-bottonTwo" name="btn_downShelf" value="下架" />
+						<input type="button" class=" ls-bottonTwo" name="btn_deleteProduct" value="删除" />
+					</td>
+				</tr>
+				###if($!{pageInfo.result.size()} <= 0)
+				##<tr>
+				##	<td colspan="7" class="tipmktd">
+				##		#if($!{prodShelfForm.searchUsedFlag}=="1")
+				##			<div class="tipmkbox">没有找到符合条件的信息，建议您调整搜索条件重新检索！</div>
+				##		#else
+				##			#if($!{prodShelfForm.supplierIdentityState} =="0" )
+				##				<div class="tipmkbox">
+				##					您好，只有通过身份认证，产品审核通过后方可被买家看到。<a class="lkundeline" href="http://seller.dhgate.com/merchant/identity.do?dhpath=10008,50">进行身份认证</a>。
+				##				</div>
+				##			#else
+				##				<div class="tipmkbox">
+				##					您暂时没有已上架产品。##请 <a class="lkundeline" href="http://$!{appseller}/syi/category.do">添加新产品</a>。
+				##				</div>
+				##			#end
+				##		#end
+				##	</td>
+				##</tr>
+				###end
+				#if($!{pageInfo.result.size()} <= 0)
+				<!--当搜索结果为空的情况-->
+				<tr class="ls-zeroCenter">
+                	<td valign="middle" height="270" align="center" colspan="7">
+                    	没有找到符合条件的信息。
+                    </td>
+                </tr>
+				<!--当搜索结果为空的情况结束-->
+				#end
+				#set($i=0)
+				#foreach($productVO in  $pageInfo.result)
+				<tr class="j-mouse-hover">
+					<td class="padleft20 lspadleft20">
+						<input type="checkbox" class="j-check-group-id" name="prodShelfForm.itemcodeChecked" id="ckbox$!{productVO.productBizDTO.productDTO.itemcode}" value="$!{productVO.productBizDTO.productDTO.itemcode}"/>
+					</td>
+					<td class="padimg">
+						<span class="prolayout">
+							<a href="http://$!{appbuyer}/$!{productVO.productBizDTO.standardUrl}" target="_blank">
+								<img src="http://$!{dhresource}/$!{productVO.productBizDTO.productDTO.imageurl}">
+							</a>
+						</span>
+						<span class="serveicon">
+							#if($!{prodShelfForm.isHonestSeller} == 1)
+								#set($oneday = 0)
+								#if($!{productVO.productBizDTO.productDTO.productOnedayDTO.oneday} == 1)
+									#set($oneday = 1)
+								#end
+								<img width="14" height="16" class="seller-icon26" src="http://$!{dhresource}/2008/web20/seller/img/blank.gif" title="“产品如实发货”是指卖家所售产品的标题、图片和所有的文字描述都为产品真实性能，并且卖家会在备货期内按时发货。">
+								#if(${oneday} == 1)
+									<img width="14" height="16" class="seller-icon27" src="http://$!{dhresource}/2008/web20/seller/img/blank.gif" title="“闪电发货”是指卖家向买家提供在48小时内发货服务。">
+								#end
+								#if($!{productVO.productBizDTO.productDTO.productLocalReturnDTO.lrTag} == 1)
+									## 海外退货服务
+									<img height="16" width="14" class="seller-icon35" src="http://$!{dhresource}/2008/web20/seller/img/blank.gif" width="14" height="16" title="“海外退货”是由卖家提供的便捷退货服务，当发生退货纠纷时买家只需将产品退回本地仓库以快速完成退货退款"/>
+								#end
+							#end
+						</span>
+					</td>
+					<td class="padpro">
+						<span class="langcont padright40 clearfix j-tip-container">
+							<a class="j-multi-trigger" itemcode="$!{productVO.productBizDTO.productDTO.itemcode}" standardUrl="$!{productVO.productBizDTO.standardUrl}" isloadMulti="0" loadMultiTime="0" href="http://$!{appbuyer}/$!{productVO.productBizDTO.standardUrl}" target="_blank">
+								$!{productVO.productBizDTO.productDTO.productBaseDTO.productname}
+							</a>
+							<div class="langtitle j-multi-content" style="display:none;">
+                            	<i class="langarrow"></i>
+                            	<dl>
+									<dt>俄语标题:</dt>
+									<dd>
+										<a class="j-multi-title-ru" hasTranslated="0" title=""  target="_blank">
+											翻译中...
+										</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt>德语标题:</dt>
+									<dd>
+										<a class="j-multi-title-de" title=""  target="_blank">
+											翻译中...
+										</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt>法语标题:</dt>
+									<dd>
+										<a class="j-multi-title-fr" title=""  target="_blank">
+											翻译中...
+										</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt>西班牙语标题:</dt>
+									<dd>
+										<a class="j-multi-title-es" title=""  target="_blank">
+											翻译中...
+										</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt>意大利语标题:</dt>
+									<dd>
+										<a class="j-multi-title-it" title=""  target="_blank">
+											翻译中...
+										</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt>葡萄牙语标题:</dt>
+									<dd>
+										<a class="j-multi-title-pt" title=""  target="_blank">
+											翻译中...
+										</a>
+									</dd>
+								</dl>
+                            </div>
+						</span>
+						<div class="gearycolor">
+							#if($!{productVO.productBizDTO.hasNewPrice()})
+								#if($!{productVO.productBizDTO.minSellerPrice} && $!{productVO.productBizDTO.maxSellerPrice} && $!{productVO.productBizDTO.minBuyerPrice} && $!{productVO.productBizDTO.maxBuyerPrice}) 
+									实收：
+									#if($!{productVO.productBizDTO.minSellerPrice} == $!{productVO.productBizDTO.maxSellerPrice})
+										$$!number.format($!{productVO.productBizDTO.minSellerPrice})
+									#else
+										$$!number.format($!{productVO.productBizDTO.minSellerPrice}) - $$!number.format($!{productVO.productBizDTO.maxSellerPrice})
+									#end
+								#end
+								<br/> 
+								买价： 
+								#if($!{productVO.productBizDTO.minBuyerPrice} == $!{productVO.productBizDTO.maxBuyerPrice})
+									$$!number.format($!{productVO.productBizDTO.minBuyerPrice})
+								#else
+									$$!number.format($!{productVO.productBizDTO.minBuyerPrice}) - $$!number.format($!{productVO.productBizDTO.maxBuyerPrice})
+								#end
+								<br/>
+							#end
+						</div>
+						<div class="qualityGrade tipstion j-tip-container">
+							<span class="lsWrapOne">产品编号：$!{productVO.productBizDTO.productDTO.itemcode}</span>
+							#if($!{productVO.prodScoreDTO.prodTotalScore})
+							信息质量评分  <span class="orgfont j-tip-trigger">$!{productVO.prodScoreDTO.prodTotalScore}分</span>
+                        	<a class="lsgraderule-icon" href="http://seller.dhgate.com/help/c0209/152001.html#help_php-listmiddel-1" target="_blank" title="评分运算规则"><i></i></a>
+							<span class="tiparrow-posbox j-tip-content ls-Location" style="display: none; ">
+                              <div class="tiparrow-box clearfix" style="width:415px">
+                              	 <div class="p-total clearfix">
+                                        <div class="progress-grade"><span class="grade-text">产品总评分</span><span class="whitebar"><span class="greenbar" style="width:$!{productVO.prodScoreDTO.totalScoreWidth}px"></span></span><span class="gradeNum"><span>$!{productVO.prodScoreDTO.prodTotalScore}</span>分</span></div>
+                                 </div>
+								 <div class="completeInfor clearfix">
+                                    <p class="infortitle"><b>产品信息</b></p>
+									#foreach($prodScoreDetailDTO in  $!{productVO.prodScoreDTO.list})
+										#if($!prodScoreDetailDTO.ruleId==1)
+											<p class="dataInfor"><span class="fltlft">$prodScoreDetailDTO.ruleDisplayName：</span><span class="whitebar"><span class="greenbar" style="width:${prodScoreDetailDTO.scoreWidth}px"></span></span><span class="fltlft">$number.format("0",$prodScoreDetailDTO.ruleScore)%</span></p>
+										#elseif($!prodScoreDetailDTO.ruleId==2)
+											<p class="dataInfor"><span class="fltlft">$prodScoreDetailDTO.ruleDisplayName：</span><span class="whitebar"><span class="greenbar" style="width:${prodScoreDetailDTO.scoreWidth}px"></span></span><span class="fltlft">$number.format("0",$prodScoreDetailDTO.ruleScore)%</span></p>
+										#elseif($!prodScoreDetailDTO.ruleId==3)
+											<p class="dataInfor"><span class="fltlft">$prodScoreDetailDTO.ruleDisplayName：</span><span class="whitebar"><span class="greenbar" style="width:${prodScoreDetailDTO.scoreWidth}px"></span></span><span class="fltlft">$number.format("0",$prodScoreDetailDTO.ruleScore)%</span></p>
+										#elseif($!prodScoreDetailDTO.ruleId==4)
+											<p class="dataInfor"><span class="fltlft">$prodScoreDetailDTO.ruleDisplayName：</span><span class="whitebar"><span class="greenbar" style="width:${prodScoreDetailDTO.scoreWidth}px"></span></span><span class="fltlft">$number.format("0",$prodScoreDetailDTO.ruleScore)%</span></p>
+										#elseif($!prodScoreDetailDTO.ruleId==5)
+											<p class="infortitle pt10"><b>物流信息</b></p>
+											<p class="dataInfor"><span class="fltlft">$prodScoreDetailDTO.ruleDisplayName：</span><span class="whitebar"><span class="greenbar" style="width:${prodScoreDetailDTO.scoreWidth}px"></span></span><span class="fltlft">$number.format("0",$prodScoreDetailDTO.ruleScore)%</span></p>
+										#end
+									#end
+								 </div>
+                                <div class="tiparrow-t" style="left: 15px;"></div>
+                              </div>
+							</span>
+							#end
+                        </div>
+						#if($!{prodShelfForm.isHonestSeller} == 1)
+							#set($oneday = 0)
+							#if($!{productVO.productBizDTO.productDTO.productOnedayDTO.oneday} == 1)
+								#set($oneday = 1)
+							#end
+							<b class="seller-icon100" title="“产品如实发货”是指卖家所售产品的标题、图片和所有的文字描述都为产品真实性能，并且卖家会在备货期内按时发货。"></b>
+							#if($!{productVO.productBizDTO.productDTO.productOnedayDTO.oneday} == 1)
+								<b class="seller-icon105" title="“闪电发货”是指卖家向买家提供在48小时内发货服务。"></b>
+							#end
+							#if($!{productVO.productBizDTO.productDTO.productLocalReturnDTO.lrTag} == 1)
+								## 海外退货服务
+								<b class="seller-icon101" title="“海外退货”是由卖家提供的便捷退货服务，当发生退货纠纷时买家只需将产品退回本地仓库以快速完成退货退款"></b>
+							#end
+						#end
+						#if($!{productVO.productBizDTO.isStoreProduct} == "1")
+							<b class="seller-icon103" title="橱窗产品">橱窗</b>
+						#end
+						#set($isGoldStallProduct = "0")
+						#if($!{productVO.productBizDTO.productDTO} && $!{productVO.productBizDTO.productDTO.productGoldStallDTO} 
+								&& $!{productVO.productBizDTO.productDTO.productGoldStallDTO} && $!{productVO.productBizDTO.productDTO.productGoldStallDTO.goldStall} == 1)
+							#set($isGoldStallProduct = "1")
+						#end
+						#set($sourcetype = "-1")
+						#if($!{productVO.productBizDTO.productDTO} && $!{productVO.productBizDTO.productDTO.sourcetype})
+							#set($sourcetype = $!{productVO.productBizDTO.productDTO.sourcetype})
+						#end
+						#if($isGoldStallProduct == "1")
+							<b class="seller-icon103" title="类目黄金展位产品">黄金</b>
+						#end
+						#if($sourcetype == "0" || $sourcetype == "4")
+							<b class="seller-icon103" title="搬家产品">搬家</b>
+						#end
+						#if($!{productVO.productBizDTO.productDTO} && $!{productVO.productBizDTO.productDTO.productVipDTO} 
+								&& $!{productVO.productBizDTO.productDTO.productVipDTO.vip}== 1)
+							<b class="seller-icon103" title="VIP产品">VIP</b>
+						#end
+						<b class="seller-icon103" title="流量快车" style="display:none;" data-itemcode="$!{productVO.productBizDTO.productDTO.itemcode}" name="marketStatus_trafficbus" id="trafficbus_$!{productVO.productBizDTO.productDTO.itemcode}">快车</b>
+						#if($!{productVO.productBizDTO.productDTO.isfreeship} == "0")
+							<span class="color090">Free Shipping</span>
+						#end
+					</td>
+					<td class="productgroup"> <span class="groupreline">#if($!{productVO.productBizDTO.productGroupName}) $!{productVO.productBizDTO.productGroupName} #else 未分组 #end</span></td>
+					<td class="right">#if($!{productVO.productBizDTO.orderNum})$!{productVO.productBizDTO.orderNum}#else 0 #end</td>
+					##<td align="right">99999</td>
+					<td>$!date.format('yyyy-MM-dd',$!{productVO.productBizDTO.productDTO.expireDate})</td>
+					<td class="operation" >
+						<div id="multiEdit_$!{productVO.productBizDTO.productDTO.itemcode}" class="langedit j-multi-edit-container">
+                        	<span class="blank"></span><a class="j-multi-edit-trigger" href="http://seller.dhgate.com/syi/edit.do?designatedVersion=1&pid=$!{productVO.productBizDTO.productDTO.itemcode}&page=1&biztype=3" target="_blank">编辑</a><b></b>
+                        	<div style="display: none;" class="dd j-multi-edit-content">
+               					<a href="http://seller.dhgate.com/syi/edit.do?designatedVersion=1&pid=$!{productVO.productBizDTO.productDTO.itemcode}&page=1&biztype=3" target="_blank">英语</a>
+								#if($prodShelfForm.hasTranslated("RU",$!{productVO.productBizDTO.productDTO.itemcode}) == 1)
+									<a class="j-multi-edit-opt-ru" optText="俄语" href="/prodmanage/multi/prodModify.do?dhpath=10001,21001,0202&multiProdModifyForm.siteId=RU&multiProdModifyForm.itemcode=$!{productVO.productBizDTO.productDTO.itemcode}" target="_blank">俄语</a>
+								#else
+									<a class="j-multi-edit-opt-ru" optText="俄语" target="_blank">俄语（翻译中）</a>
+								#end
+								#if($prodShelfForm.hasTranslated("DE",$!{productVO.productBizDTO.productDTO.itemcode}) == 1)
+									<a class="j-multi-edit-opt-de" optText="德语" href="/prodmanage/multi/prodModify.do?dhpath=10001,21001,0202&multiProdModifyForm.siteId=DE&multiProdModifyForm.itemcode=$!{productVO.productBizDTO.productDTO.itemcode}" target="_blank">德语</a>
+								#else
+									<a class="j-multi-edit-opt-de" optText="德语" target="_blank">德语（翻译中）</a>
+								#end
+								#if($prodShelfForm.hasTranslated("FR",$!{productVO.productBizDTO.productDTO.itemcode}) == 1)
+									<a class="j-multi-edit-opt-fr" optText="法语" href="/prodmanage/multi/prodModify.do?dhpath=10001,21001,0202&multiProdModifyForm.siteId=FR&multiProdModifyForm.itemcode=$!{productVO.productBizDTO.productDTO.itemcode}" target="_blank">法语</a>
+								#else
+									<a class="j-multi-edit-opt-fr" optText="法语"  target="_blank">法语（翻译中）</a>
+								#end
+								#if($prodShelfForm.hasTranslated("ES",$!{productVO.productBizDTO.productDTO.itemcode}) == 1)
+									<a class="j-multi-edit-opt-es" optText="西班牙语" href="/prodmanage/multi/prodModify.do?dhpath=10001,21001,0202&multiProdModifyForm.siteId=ES&multiProdModifyForm.itemcode=$!{productVO.productBizDTO.productDTO.itemcode}" target="_blank">西班牙语</a>
+								#else
+									<a class="j-multi-edit-opt-es" optText="西班牙语"  target="_blank">西班牙语（翻译中）</a>
+								#end
+								#if($prodShelfForm.hasTranslated("IT",$!{productVO.productBizDTO.productDTO.itemcode}) == 1)
+									<a class="j-multi-edit-opt-it" optText="意大利语" href="/prodmanage/multi/prodModify.do?dhpath=10001,21001,0202&multiProdModifyForm.siteId=IT&multiProdModifyForm.itemcode=$!{productVO.productBizDTO.productDTO.itemcode}" target="_blank">意大利语</a>
+								#else
+									<a class="j-multi-edit-opt-it" optText="意大利语"  target="_blank">意大利语（翻译中）</a>
+								#end
+								#if($prodShelfForm.hasTranslated("PT",$!{productVO.productBizDTO.productDTO.itemcode}) == 1)
+									<a class="j-multi-edit-opt-pt" optText="葡萄牙语" href="/prodmanage/multi/prodModify.do?dhpath=10001,21001,0202&multiProdModifyForm.siteId=PT&multiProdModifyForm.itemcode=$!{productVO.productBizDTO.productDTO.itemcode}" target="_blank">葡萄牙语</a>
+								#else
+									<a class="j-multi-edit-opt-pt" optText="葡萄牙语"  target="_blank">葡萄牙语（翻译中）</a>
+								#end
+            				</div>
+                        </div>
+						##<a href="http://seller.dhgate.com/syi/edit.do?designatedVersion=1&pid=$!{productVO.productBizDTO.productDTO.itemcode}&page=1&biztype=3">修改产品信息</a><br />
+						#if($!{prodShelfForm.isStudentSupplier} != 1)
+							 <a href="http://seller.dhgate.com/syi/edit.do?designatedVersion=1&apid=$!{productVO.productBizDTO.productDTO.itemcode}&page=1">添加类似产品 </a><br />
+							 <a href="javascript:void(0);" class="j-modprice-trigger" data-pid="$!{productVO.productBizDTO.productDTO.itemcode}" >更改价格</a><br />
+						#end
+						#if($isGoldStallProduct == "1")
+							<a href="/prodmanage/shelf/prodGoldStall.do?dhpath=10004,2610">管理类目黄金展位产品</a>
+						#end
+					</td>
+				</tr>
+				<tr class="up-error" id = "uperrortr$!{productVO.productBizDTO.productDTO.itemcode}" style="display:none">
+                    <td colspan="9">
+                    	<div class="tips-error"><span class="color-f00" id="error$!{productVO.productBizDTO.productDTO.itemcode}">更新有效期失败:产品信息必填项不完整</span>为保证产品信息质量和完整度，请马上<a class="margin-l under-line" target="_blank" href="http://seller.dhgate.com/syi/edit.do?designatedVersion=1&pid=$!{productVO.productBizDTO.productDTO.itemcode}&page=1&biztype=3">完善产品资料</a></div>
+                    </td>
+                </tr>
+				#end
+                <tr class="btngroup">
+					<td class="padleft20">
+						<input name="checkAllProducts" type="checkbox" value=""/>
+					</td>
+					<td colspan="6">
+						<span class="col-mgright10">全选</span>
+						<input type="button" class="j-change-group ls-bottonTwo" value="调整产品组" />
+						<input type="button" class=" ls-bottonTwo" name="btn_vaildday" value="更新有效期" />
+						<input type="button" class=" ls-bottonTwo" name="btn_batchUpdate" value="批量修改" />
+						<input type="button" class=" ls-bottonTwo" name="btn_downShelf" value="下架" />
+						<input type="button" class=" ls-bottonTwo" name="btn_deleteProduct" value="删除" />
+					</td>
+				</tr>
+			</table>
+		</div>
+        <!-- 列表 结束 -->
+		<div class="sailhistory" style="display:none;">
+			<input type="hidden" name="prodShelfForm.isLastThreeMonth" value="$!{prodShelfForm.isLastThreeMonth}" id="isLastThreeMonth"/>
+			## 默认一个月更新过的产品
+			#if("0" == $!{prodShelfForm.isLastThreeMonth})
+				以下为三个月前更新过的产品: 
+				<a id="lastThreeMonthHref" href="javascript:void(0);" >查看最近三个月的产品</a>
+			#elseif("1" == $!{prodShelfForm.isLastThreeMonth})
+				## 近一个月更新过的产品
+    			 以下为最近三个月更新过的产品：
+				<a id="earlyMonthHref" href="javascript:void(0);">查看更早的产品</a>
+			#end
+		</div>
+		#pagebarDynamicPageSizeNewII($pageInfo 'prodShelfForm')
+	</div>
+ </form>
+ 
+ ##================================================================调整产品组图层 开始 ==============================	
+    <div id="panelgroup" style="display:none;">
+    	<div class="list">
+            <div style="cursor:hand;" name="panelgroupselected" groupId="nogroup" groupName="nogroup"  class="">未分组</div>
+           	<!--       ===============================结果列表显示部分==========开始                   -->
+           	#set($i=0)
+          	#foreach($productGroupDTO in  $prodGroupList)
+          		<div style="cursor:hand;" name="panelgroupselected"  groupId="$!productGroupDTO.productgroupid" groupName="$!productGroupDTO.productgroupname"  class="">$!productGroupDTO.productgroupname</div>
+    			#set($i=$i+1)	
+    		#end
+    	<!--     ============================结果列表显示部分=====完===========         -->		
+		<div style="text-align:right">
+			<button  type="button" class="button1 closebtn">
+				<span class="button6_lt" style="color:#2B2B2B;">
+					<span class="button6_ri">取消</span></span>
+			</button>&nbsp;
+		</div>
+    	</div>
+    </div>
+##================================================================调整产品组图层 结束==============================
+<table id="productGroupTable" style="width:480px;display:none;" class="noshade-pop-table">
+    <tbody><tr>
+        <td class="t-lt"></td>
+        <td class="t-mid"></td>
+        <td class="t-ri"></td>
+    </tr>
+    <tr>
+        <td class="m-lt"></td>
+        <td class="m-mid">
+        	<div class="mid-warp">
+            	<div class="noshade-pop-content">
+                    <div class="noshade-pop-title">
+                        <span>请选择要加入的产品组：</span>
+                    </div>
+                    <div class="noshade-pop-inner">
+                    	<div class="tips-common"><span class="tips-information">每次只能选择一个产品组</span></div>
+                    	<div class="progroupbox">
+                        	<ul>
+								#foreach($productGroupDTO in  $prodGroupList)
+									<li name="productGroup_li" cval="$!{productGroupDTO.productgroupid}" ><input type="radio" name="selected_productGroup" id="$!{productGroupDTO.productgroupid}" value="$!{productGroupDTO.productgroupname}" /><label for="$!{productGroupDTO.productgroupid}">$!{productGroupDTO.productgroupname}</label></li>
+								#end
+                            </ul>
+                        </div>
+                        <div class="box1">
+                           <div class="align-center clearfix">
+                                <span class="yellowBtn valmiddle"><input type="button" id="btn_submitChangeGroup" value="确 定"></span>
+                                <span class="tourBtn"><input type="button" id="btn_cancelChangeGroup" value="取 消"></span>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="noshade-pop-bot"></div>
+                </div>
+                <a href="javascript:void(0)" id="ahref_cancelChangeGroup" class="noshade-pop-close"></a>
+            </div>
+        </td>
+        <td class="m-ri"></td>
+    </tr>
+    <tr>
+        <td class="b-lt"></td>
+        <td class="b-mid"></td>
+        <td class="b-ri"></td>
+    </tr>
+</tbody></table>
+
+<!--新手指引蒙版弹层 开始-->
+<input type="hidden" id="showGoldProductValue" value="1" />
+<!--第一步-->
+<div id="newGuideStep1" class="new-guide-step1 png_bg" style="display:none;">
+	<div class="txtcontent">现在可以在“管理产品”栏目中统一管理待<br />审核、已上架、审核未通过、下架产品等状态<br />的产品啦！</div>
+    <div class="txtconval">
+        <span class="txtpagenum">1/<span class="txtcolor001">3</span></span>
+        <span class="guide-next-button" id="guideNextButton1">继续</span>
+        <span class="guide-i-know" conduct="iknow">我知道了~</span>
+    </div> 
+    <div class="guide-arrow1 png_bg"></div>
+    <a class="guide-close-button png_bg" href="javascript:void(0);" conduct="iknow"></a>
+    <div class="guide-pos1"></div>
+</div>
+<!--第二步-->
+<div id="newGuideStep2" class="new-guide-step1 png_bg" style="display:none;">
+    <div class="txtcontent">
+		通过切换标签来查看不同状态的产品。
+		##if($!{prodShelfForm.hasGoldStallAuthority} == "1")
+		##	1、通过切换标签来查看不同状态的产品。<br />
+		##	2、黄金展位产品管理入口搬到这儿了！
+		##else
+		##	通过切换标签来查看不同状态的产品。
+		###end
+	</div>
+    <div class="txtconval">
+        <span class="txtpagenum">2/<span class="txtcolor001">3</span></span>
+        <span class="guide-next-button" id="guideNextButton2">继续</span>
+        <span class="guide-i-know" conduct="iknow">我知道了~</span>
+    </div> 
+    <div class="guide-arrow2 png_bg"></div>
+    <a class="guide-close-button  png_bg" href="javascript:void(0);" conduct="iknow"></a>
+    <div class="guide-pos2"><iframe></iframe></div>
+    <div id="showGoldProductBox" style="display:none;">
+        <div class="guide-arrow22 png_bg"></div>
+        <div class="guide-pos22"><iframe></iframe></div>
+    </div>
+</div>
+<!--第三步-->
+<div id="newGuideStep3" class="new-guide-step1 png_bg" style="display:none;">
+    <div class="txtcontent">界面更加简洁，功能更加强大的搜索功能，<br />通过模糊关键词搜索更易于让你找到相关的<br />产品。</div>
+    <div class="txtconval">
+        <span class="txtpagenum">3/<span class="txtcolor001">3</span></span>
+        <span class="guide-next-button" id="guideNextButton3" conduct="iknow">立即体验</span>
+    </div> 
+    <div class="guide-arrow3 png_bg"></div>
+    <a class="guide-close-button  png_bg" href="javascript:void(0);" conduct="iknow"></a>
+    <div class="guide-pos3"><iframe></iframe></div>
+    
+</div>
+
+<!--新手指引蒙版弹层 结束-->
+
+<!-- 产品组弹层 开始 -->
+<div class="dialog-inner-prodgroup" style="width:622px;display:none;">
+  <div class="tips-common"><span class="tips-information">每次只能选择一个产品组</span></div>
+    <div class="progroupbox">
+        <ul class="j-prodgroup-list"></ul>
+      </div>
+    <!--分页 开始-->
+      <div class="commonpage j-prodgroup-pager"></div>
+      <!--分页 结束-->
+ 
+      <div class="tips-common" style="display:none;">
+        <span class="tips-error">错误提示</span>
+      </div>
+      <div class="box1">
+         <div class="align-center clearfix">
+              <span class="bigyellow-button valmiddle marg-r10"><input type="button" class="j-dialog-confirm" value="确 定"></span>
+              <span class="biggrey-button"><input type="button" class="j-dialog-closer" value="取 消"></span>
+          </div> 
+      </div>
+</div>
+<!-- 产品组弹层 结束 -->
+
+<!-- 一键修改开始 -->
+<table style="width:800px; display:none;" class="noshade-pop-table js-popBox">
+    <tbody><tr>
+        <td class="t-lt"></td>
+        <td class="t-mid"></td>
+        <td class="t-ri"></td>
+    </tr>
+    <tr>
+        <td class="m-lt"></td>
+        <td class="m-mid">
+      <div class="mid-warp">
+              <div class="noshade-pop-content">
+                <div class="noshade-pop-inner">
+                    <div class="noshade-pop-title">
+                        <span>一键修改：</span>
+                    </div>
+                    
+                    <iframe id="frame_addpro" src="" width='758' height='491' frameborder='0' scrolling='no' allowtransparency='true' ></iframe>
+                 </div>
+                <div class="noshade-pop-bot"></div>
+                <a href="javascript:void(0)" class="noshade-pop-close js-boxClose"></a>
+            </div>
+          </div>
+        </td>
+        <td class="m-ri"></td>
+    </tr>
+    <tr>
+        <td class="b-lt"></td>
+        <td class="b-mid"></td>
+        <td class="b-ri"></td>
+    </tr>
+</tbody></table>
+<!-- 一键修改结束 -->
+
+<!-- vip气泡 -->
+<div style="display:none;" class="tab-tipspopbox j-tipspopbox">
+    <div class="tab-tips-pop png_bg">
+        <div class="tabtipscontxt">1.更多流量入口及曝光，提升转化率<br>2.更多优质的用户，带来更稳定的销售额<br>3.更高重复购买率，会相应提升产品排序</div>
+        <span title="立即体验" class="tabtipsbtn j-tipsbtn"></span> 
+        <span title="我知道了" class="tabokbtn j-tabokbtn"></span>
+        <a href="javascript:void(0);" class="tabtipsclose j-tipsclose"></a>
+    </div>
+</div>
+
+
+
+<!--新手指引蒙版弹层 开始-->
+<div class="wpauto" style="display:none;">
+<div class="ui-mask-container"></div>
+  <div class="new-guide" >
+	<div class="txtcontent">您可以为产品信息中的公共信息单独创建一个模板， 并在产品中引用！<a href="">点这里</a>了解详情。</div> 
+	<div class="guide-arrow1 png_bg"></div>
+	<a class="guide-close-button png_bg j-nonotice" href="javascript:void(0);" conduct="iknow"></a>
+	<i class="nonotice j-nonotice">不再提示</i>
+  </div>
+</div>
+<div class="j-dialog-modprice" style="display:none;width:900px;"></div>
+
+<div class="m-layer j-surveyPage" #if($!{isSurveyPageShow} != "0")style="display:none;"#end>
+    <div class="lymask"></div>
+    <table class="lytable"><tbody><tr><td class="lytd">
+    <div class="lywrap">
+        <div class="lytt">
+        	<div class="layDivOne j-surveyPage-hide" hideType="1"></div>
+            <div class="layDivTwo">请对产品管理改版提出您宝贵的意见，它将指引我们不断改进。</div>
+            <div class="layDivThree">
+                <a class="layAone j-surveyPage-hide" hideType="2" href="javascript:void(0);">不再显示</a>
+                <a class="layAtwo j-surveyPage-hide" hideType="2" href="http://survey.dhgate.com/index.php?sid=89224&lang=zh-Hans" target="_blank">去吐槽</a>
+            </div>
+        </div>
+    </div></td></tr></tbody></table>
+</div>
+	
+<script src="http://$!{dhresource}/dhs/mos/js/productgroup/dialog.js?version=$!{jsversion}"></script>
+<script src="http://$!{dhresource}/dhs/mos/js/productgroup/pager1.js?version=$!{jsversion}"></script>
+<script src="http://$!{dhresource}/dhs/mos/js/productgroup/prodmanage.js?version=$!{jsversion}"></script>
+<script type="text/javascript" src="http://$!{dhresource_js}/seller/pricesystem/prodmanage.js?version=$!{jsversion}"></script>
+##<script type="text/javascript" src="http://$!{dhresource_js}/seller/multilan/prodmanage.js?version=$!{jsversion}"></script>
+<script src="http://$!{dhresource_js}/seller/batchattr/prodmanage.js?version=$!{jsversion}"></script>
+<script src="http://$!{dhresource_js}/seller/stusyi/stusyiAuth.js?version=$!{jsversion}"></script>
+<script type="text/javascript" src="http://$!{dhresource_js}/seller/vip/bubble.js?version=$!{jsversion}"></script>
+<script type="text/javascript" src="http://$!{dhresource_js}/seller/productmanage/modprice.js?version=$!{jsversion}"></script>
+<script type="text/javascript" src="http://$!{dhresource_js}/seller/productmanage/productgrade.js?version=$!{jsversion}"></script>
+<script type="text/javascript" src="http://$!{dhresource_js}/seller/mydhgate/topLayer.js?version=$!{jsversion}"></script>
+
+<script>
+$(document).delegate('.j-btn-batchattr', 'click', function(){
+		window.open('/prodmanage/attribute/prodAttrBatch.do', 'batchattr', 'scrollbars=yes,resizable=yes,toolbar=no');
+	});
+
+function addProductToWindow( strSWinId, strWinType ){
+    var strUrl = '/prodmanage/akey/prodAKey.do';//"/mydhgate/store/addpro.do?act=pageload&windowId="+ strSWinId +"&windowType=" + strWinType;
+    jQuery(".js-popBox").modal(
+      {
+        closeClass:'js-boxClose',
+        onShow:function(){
+          $("#frame_addpro").attr("src", strUrl)
+          return true;
+        }       
+      }
+    );
+  }
+
+</script>
+
+</body>
+</html>
+

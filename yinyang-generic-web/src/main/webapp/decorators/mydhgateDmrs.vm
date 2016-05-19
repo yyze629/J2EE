@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>#if($title)$title #else My DHgate #end</title>
+	$!head
+</head>
+<body>
+	
+   <!-- <input type='hidden' name="nickName" id="nickNameVal" value="$!nickname"/>
+   <script type="text/javascript">
+        $("#nickName").html($("#nickNameVal").val());	
+	</script>   -->
+   <div class="content clearfix">
+		$!body
+   </div>
+   
+   <!--\#include virtual='/seller-mydhgate/my-footer.html'-->
+	
+   ##<script type="text/javascript" src="http://js.dhresource.com/seller/mydhgate/index.js"></script>
+   ##<script src="http://js.dhresource.com/seller/mydhgate/menu-common.js?version=$!{jsversion}" type="text/javascript"></script>
+   
+</body>
+</html>

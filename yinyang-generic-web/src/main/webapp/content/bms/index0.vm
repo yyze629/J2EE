@@ -1,0 +1,145 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理系统</title>
+<meta name="author" content="DeathGhost" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<![endif]-->
+<script src="js/jquery.js"></script>
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+	$(document).ready(function()
+	{
+		$("#mymenu ul li dl dt").next("div").hide();
+		$("#mymenu ul li dl dt").click(function()
+		{
+			$(this).next("div").toggle();
+		});
+		
+		
+		$('#mymenu ul li dl dd a').click(function (){
+			//把之前已有的active去掉
+			$('.active').removeClass('active');
+			//当前点击的li加上class
+			$(this).addClass("active");
+		});
+		
+    });
+	
+	(function($){
+		$(window).load(function(){
+			$("a[rel='load-content']").click(function(e){
+				e.preventDefault();
+				var url=$(this).attr("href");
+				$.get(url,function(data){
+					$(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+					//scroll-to appended content 
+					$(".content").mCustomScrollbar("scrollTo","h2:last");
+				});
+			});
+			
+			$(".content").delegate("a[href='top']","click",function(e){
+				e.preventDefault();
+				$(".content").mCustomScrollbar("scrollTo",$(this).attr("href"));
+			});
+			
+		});
+	})(jQuery);
+</script>
+
+</head>
+<body margin="0">
+<h2>&nbsp;&nbsp;&nbsp;&nbsp;我的后台管理系统</h2>
+<!--aside nav   <h2><a href="index.php">起始页</a></h2>-->
+<aside id="mymenu" class="lt_aside_nav content mCustomScrollbar">
+ 
+ <ul>
+  <li>
+   <dl>
+    <dt>商品信息</dt>
+    <!--当前链接则添加class:active
+		<li><a href="preface.html" target="view_frame">Preface</a></li>
+	-->
+	<div>
+		<dd><a href="index1.vm" target="view_frame" class="active">商品列表</a></dd>
+		<dd><a href="index2.vm" target="view_frame">商品分类</a></dd>
+		<dd><a href="index3.vm" target="view_frame">商品属性</a></dd>
+		<dd><a href="index4.vm" target="view_frame">品牌管理</a></dd>
+		<dd><a href="index5.vm" target="view_frame">test网0</a></dd>
+		<dd><a href="chapter1.vm" target="view_frame">test网1</a></dd>
+		<dd><a href="chapter2.vm" target="view_frame">test网2</a></dd>
+		<dd><a href="chapter3.vm" target="view_frame">test网3</a></dd>
+	</div>
+   </dl>
+  </li>
+  <li>
+   <dl>
+    <dt>订单信息</dt>
+	<div>
+		<dd><a href="#">订单列表</a></dd>
+		<dd><a href="#">添加订单</a></dd>
+		<dd><a href="#">缺货登记</a></dd>
+	</div>
+   </dl>
+  </li>
+  <li>
+   <dl>
+    <dt>会员管理</dt>
+	<div>
+		<dd><a href="#">会员列表</a></dd>
+		<dd><a href="#">添加会员</a></dd>
+		<dd><a href="#">会员等级</a></dd>
+		<dd><a href="#">资金管理</a></dd>
+	</div>
+   </dl>
+  </li>
+  <li>
+   <dl>
+    <dt>基础设置</dt>
+	<div>
+		<dd><a href="#">站点基础设置</a></dd>
+		<dd><a href="#">SEO设置</a></dd>
+		<dd><a href="#">SQL语句查询</a></dd>
+		<dd><a href="#">模板管理</a></dd>
+	</div>
+   </dl>
+  </li>
+  <li>
+   <dl>
+    <dt>营销管理</dt>
+	<div>
+		<dd><a href="#">订阅列表</a></dd>
+		<dd><a href="#">邮件群发</a></dd>
+		<dd><a href="#">优惠打折</a></dd>
+	</div>
+   </dl>
+  </li>
+  <li>
+   <dl>
+    <dt>配送与支付设置</dt>
+	<div>
+		<dd><a href="#">配送方式</a></dd>
+		<dd><a href="#">支付方式</a></dd>
+	</div>
+   </dl>
+  </li>
+  <li>
+   <dl>
+    <dt>在线统计</dt>
+	<div>
+		<dd><a href="#">流量统计</a></dd>
+		<dd><a href="#">销售额统计</a></dd>
+	</div>
+   </dl>
+  </li>
+  <li>
+   <p class="btm_infor">©yy集团 版权所有</p>
+  </li>
+ </ul>
+</aside>
+
+
+</body>
+</html>

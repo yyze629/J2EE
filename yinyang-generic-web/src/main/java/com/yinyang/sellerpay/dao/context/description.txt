@@ -1,0 +1,3 @@
+此包
+用于实现  多数据源  分库  分表操作
+详情请参照  com.dhgate.wisdom.context包下java文件与applicationContext-datasource.xml配置文件

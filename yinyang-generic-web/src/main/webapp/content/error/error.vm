@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>提示页面</title>
+<link href="http://image.dhgate.com/2008/web20/seller/css/login2.css?version=$!{jsversion}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="content">
+<ol>
+<li>$errorMsg</li>
+<li><input name="" type="image" src="http://image.dhgate.com/2008/web20/seller/img/login/login_006.gif" onclick="javascript:history.go(-1);" /></li>
+</ol>
+</div>
+</body>
+</html>

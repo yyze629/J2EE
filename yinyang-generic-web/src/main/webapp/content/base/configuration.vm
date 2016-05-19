@@ -1,0 +1,66 @@
+<html>
+	<head>
+        <title>配置中心测试页</title>
+		<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+    </head>
+
+	<body>
+		<ul class="nav nav-pills">
+			<li class="funcnav" id="liDemo"><a href="#">示例</a></li>
+			<li class="funcnav" id="liDoc"><a href="#">文档-spring</a></li>
+			<li class="funcnav" id="liFaq"><a href="#">FAQ</a></li>
+		</ul>
+		
+		<div class="hero-unit span9 funcinfo" id="functionDemo">
+			<h4>以下数据从配置中心取出的error code 信息：</h4>
+				<p>这是配置文件的一个测试.</p>
+        	<ul>
+        	#foreach($info in $errorcodes.entrySet())  
+        		<li>$info.key : $info.value</li>
+        	#end
+            </ul>
+			
+			<hr>
+			<h4>以下数据从配置中心取出的dhconfig 信息：</h4>
+				<p>这又是配置文件的一个测试.</p>
+        	<ul>
+				
+        	#foreach($info in $dhconfig.entrySet())  
+        		<li>$info.key : $info.value</li>
+        	#end
+            </ul>
+		</div>
+		
+		<div class="hero-unit span9 funcinfo" id="functionDoc">
+			$docHtml
+		</div>
+		<div class="hero-unit span9 funcinfo" id="functionFaq">
+			$faqHtml
+		</div>
+		
+		<script>
+		$(function(){
+			$(".funcnav").click(function(){
+				$(".funcinfo").hide();
+				$(".funcnav").removeClass("active");
+				$(this).addClass("active");
+				console.log("function" + $(this).attr("id").substring(2));
+				var showid= "function" + $(this).attr("id").substring(2);
+				$("#" + showid).show();
+			});
+			
+			$("#liDemo").click();
+		});
+    </script>
+    </body>
+	
+</html>
+	

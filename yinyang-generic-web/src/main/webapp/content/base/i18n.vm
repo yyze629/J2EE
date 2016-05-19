@@ -1,0 +1,55 @@
+<html>
+	<head>
+        <title>i18n</title>
+		<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+    </head>
+
+	<body>
+		<ul class="nav nav-pills">
+			<li class="funcnav" id="liDemo"><a href="#">示例</a></li>
+			<li class="funcnav" id="liDoc"><a href="#">文档-spring-struts-velocity</a></li>
+			<li class="funcnav" id="liFaq"><a href="#">FAQ</a></li>
+		</ul>
+		
+		<div class="hero-unit span9 funcinfo" id="functionDemo">
+			<!-- 请修改此处！ -->
+			<a onclick="$('#showJson').load('/frttemplate/demo/preaddprod.do?dhLanguageName=zh-CN')" class="btn btn-primary btn-large">中文</a>
+			<!-- 请修改此处！ -->
+			<a onclick="$('#showJson').load('/frttemplate/demo/preaddprod.do?dhLanguageName=en-US')" class="btn btn-primary btn-large">En</a>
+			<div id="showJson">
+            </div>
+		</div>
+		
+		<div class="hero-unit span9 funcinfo" id="functionDoc">
+			$docHtml
+		</div>
+		<div class="hero-unit span9 funcinfo" id="functionFaq">
+			$faqHtml
+		</div>
+		
+		<script>
+		$(function(){
+			$(".funcnav").click(function(){
+				$(".funcinfo").hide();
+				$(".funcnav").removeClass("active");
+				$(this).addClass("active");
+				console.log("function" + $(this).attr("id").substring(2));
+				var showid= "function" + $(this).attr("id").substring(2);
+				$("#" + showid).show();
+			});
+			
+			$("#liDemo").click();
+		});
+    </script>
+    </body>
+	
+</html>
+	

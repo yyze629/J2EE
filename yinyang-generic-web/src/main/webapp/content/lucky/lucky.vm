@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<title></title>
+    <meta charset="utf-8">
+    <title>Dhgate</title>
+<style type="text/css">
+#panelgroup {
+	display: none;
+	position: absolute;
+	width: 360px; *	
+	border-bottom: 2px #f1f1f1 solid;
+	border-left: 2px #f1f1f1 solid
+}
+#panel{
+	display: none;
+	position: absolute;
+	width: 364px; *
+	border-bottom: 2px #f1f1f1 solid;
+	border-left: 2px #f1f1f1 solid
+}
+#shenhe{ height:25px; line-height:25px; text-align:right;}
+</style>
+  </head>
+  <body>
+    Hello,${info}
+  </body>
+</html>
+

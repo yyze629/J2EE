@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 允许动态方法调用 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<!-- 开发模式（自动加载国际化文件，配置文件，且提升问题等级。对性能有影响，另外还带来其他问题）猛烈要求为false -->
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.convention.classes.reload" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<!-- 请修改此处！ com\.yinyang\.sellerpay\.web\.action\..*-->
+	<constant name="struts.class.reloading.acceptClasses" value="com\.yinyang\.sellerpay\.web\.action\..*" />
+
+	<!-- 文字资源国际化常量 -->
+	<constant name="struts.custom.i18n.resources" value="globalMessages" />
+	<constant name="struts.velocity.toolboxlocation" value="/WEB-INF/tools.xml" />
+	<!-- <constant name="struts.convention.result.path" value="/logisticsmode/" /> -->
+
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.ui.templateSuffix" value="ftl" />
+
+	<!-- 在Jboss中使用convention插件，添加下面两个常量 -->
+	<!-- <constant name="struts.convention.exclude.parentClassLoader" value="true" 
+		/> <constant name="struts.convention.action.fileProtocols" value="jar,vfsfile,vfszip" 
+		/> -->
+
+	<!-- 上传文件需要配置如下两个常量,10M上限,临时目录/tmp -->
+	<constant name="struts.multipart.maxSize" value="10701096" />
+	<constant name="struts.multipart.saveDir" value="/tmp" />
+
+
+	<!-- 相当于普通xml配置中的extends，指定默认的继承包 -->
+	<constant name="struts.convention.default.parent.package" value="struts-default" />
+	<!-- 结果资源所在路径，这个地方要注意，详见下面解释 -->
+	<constant name="struts.convention.result.path" value="/content/" />
+	<!-- 指定以那些后缀结尾的java类package包被搜索，以发现注解 -->
+	<constant name="struts.convention.package.locators" value="web,action" />
+	
+	<package name="default" namespace="/" extends="json-default">
+		<!-- 权限验证拦截器 -->
+		<!-- <interceptors>
+			<interceptor name="authority" class="com.yinyang.sellerpay.web.util.SecurityInterceptor" />
+			<interceptor name="sellerPayExceptionInterceptor" class="com.yinyang.sellerpay.web.util.ExceptionLogHandler"/>
+			此拦截器栈包括权限检查
+			<interceptor-stack name="default-auth">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="authority">
+					<param name="excludeMethods">user</param> 不进行权限检查的方法名称
+					<param name="excludeMethods">login</param>
+				</interceptor-ref>
+				<interceptor-ref name="sellerPayExceptionInterceptor" />
+			</interceptor-stack>
+		</interceptors> -->
+		<!-- 缺省的拦截器栈是包括权限验证的 -->
+		<!-- <default-interceptor-ref name="default-auth" /> -->
+
+		<global-results>
+			<result name="error" type="dispatcher">/WEB-INF/content/exception.jsp</result>
+			<result name="subError" type="redirect">/errorAction.do?dhpath=${dhpath}</result>
+			<result name="exception" type="dispatcher">/WEB-INF/content/exception.jsp</result>
+			<!-- <result name="login" type="redirect">
+				<param name="location">http://seller.dhgate.com/usr/loginsign.do?returnURL=${returnUrl}</param>
+			</result>
+			<result name="no_permission" type="redirect">
+				<param name="location">http://seller.dhgate.com/usr/signin.do?act=loginout</param>
+			</result> -->
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+	</package>
+	<package name="excel" namespace="/excel" extends="default"> 
+	</package>
+</struts>

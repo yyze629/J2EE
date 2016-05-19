@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+     
+	<bean class="com.dhgate.apsaras.access.spring.annotation.handler.ApsarasAnnotationHandler"/>
+	
+	
+	<!-- 使用 annotation com.yinyang.sellerpay.*-->  <!-- 使用 annotation 自动注册bean,并检查@Controller, @Service, @Repository注解已被注入 -->
+    <context:component-scan base-package="com.dhgate.sellerpay.dao.*"/>
+    <context:component-scan base-package="com.dhgate.sellerpay.web.*"/>
+
+	<!-- enable autowire --><!-- 使用 annotation --> 
+	<!-- <tx:annotation-driven  /> -->
+	<context:annotation-config />
+	
+	<import resource="applicationContext-dao.xml"/>
+</beans>
+

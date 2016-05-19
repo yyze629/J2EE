@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="struts_blank" version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <display-name>Struts Blank Convention</display-name>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:applicationContext*.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+    
+    <filter> 
+        <filter-name>encodingFilter </filter-name> 
+        <filter-class> 
+            org.springframework.web.filter.CharacterEncodingFilter 
+        </filter-class> 
+        <init-param> 
+            <param-name>encoding </param-name> 
+            <param-value>UTF-8 </param-value> 
+        </init-param> 
+        <init-param> 
+            <param-name>forceEncoding </param-name> 
+            <param-value>true </param-value> 
+        </init-param> 
+    </filter>
+
+    <filter>
+        <filter-name>sitemesh</filter-name>
+        <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+        <!-- <filter-class>org.apache.struts2.sitemesh.VelocityPageFilter</filter-class> -->
+    </filter>
+    
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+        <!-- <init-param>
+		   <param-name>config</param-name>
+		   <param-value>struts-default.xml,struts-plugin.xml,../struts.xml</param-value>
+		</init-param> -->
+		<init-param>
+           <param-name>bundles</param-name>
+           <param-value>globalMessages</param-value>
+        </init-param>
+    </filter>
+    
+    <!-- 加上此过滤器，无法访问index 的vm和jsp页面 -->
+    <filter>
+            <filter-name>internationalizationFilter</filter-name>
+            <filter-class>com.yinyang.sellerpay.web.velocity.InternationalizationFilter</filter-class>
+            <init-param>
+                <param-name>bundles</param-name>
+                <param-value>globalMessages</param-value>
+             </init-param>
+    </filter>
+    <filter-mapping>
+		<filter-name>internationalizationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+    <filter-mapping> 
+        <filter-name>encodingFilter </filter-name> 
+        <url-pattern>/* </url-pattern> 
+    </filter-mapping>
+ 
+
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
+	    
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    
+  
+    <servlet>
+        <servlet-name>velocity</servlet-name>
+        <servlet-class>com.opensymphony.module.sitemesh.velocity.VelocityDecoratorServlet</servlet-class>     
+        <!-- <servlet-class>org.apache.struts2.sitemesh.VelocityDecoratorServlet</servlet-class> -->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>velocity</servlet-name>
+        <url-pattern>*.vm</url-pattern>
+    </servlet-mapping>
+    
+    <welcome-file-list>
+    	<welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

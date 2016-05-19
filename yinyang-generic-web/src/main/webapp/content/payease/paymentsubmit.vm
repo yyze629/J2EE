@@ -1,0 +1,41 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>网上支付</title>
+	<meta charset="utf-8">	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/syi/matrix/jquery-1.5.1.min.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/syi/matrix/jquery.simplemodal2.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/syi/matrix/json2.min.js?version=$!{jsversion}"></script>
+</head>
+<body>
+	
+	<form name="form" action="$!{paymentForm.payUrl}" method="post"> 
+	<!-- 易支付域名切换https://pay.yizhifubj.com-->
+	<!-- form name=form action="http://https://pay.yizhifubj.com/prs/user_payment.checkit" method="post">-->
+	    <!-- 您的支付信息如下(调试页面 线上这些信息将被隐藏，而直接提交此页面）： -->
+		<br/><input type="hidden" name="v_mid" value="$!{payFlow.VMid}"/>		<!-- 商户编号 -->
+		<br/><input type="hidden" name="v_oid" value="$!{payFlow.VOid}"/>		<!-- 订单编号 -->
+		<br/><input type="hidden" name="v_rcvname" value="$!{payFlow.VRcvname}"/><!-- 收货人姓名 -->
+		<br/><input type="hidden" name="v_rcvaddr" value="0"/>	<!-- 收货人地址 -->
+		<br/><input type="hidden" name="v_rcvtel" value="0"/>	<!-- 收货人电话 -->
+		<br/><input type="hidden" name="v_rcvpost" value="0"/>	<!-- 收货人邮编 -->
+		<br/><input type="hidden" name="v_amount" value="$!{payFlow.VAmount}"/> <!-- 订单总金额 -->
+		<br/><input type="hidden" name="v_ymd" value="$!{payFlow.VYmd}"/>		<!-- 订单产生日期 -->
+		<br/><input type="hidden" name="v_orderstatus" value="0"/>	<!-- 配货状态 -->
+		<br/><input type="hidden" name="v_ordername" value="0"/>	<!-- 订货人姓名 -->
+		<br/><input type="hidden" name="v_moneytype" value="$!{payFlow.VMoneytype}"/>		<!-- 币种,0为人民币,1为美元 -->
+		<br/><input type="hidden" name="v_url" value="$!{payFlow.VUrl}"/>	<!-- 支付动作完成后返回到该url，支付结果以GET方式发送 -->
+		<br/><input type="hidden" name="v_md5info" value="$!{payFlow.VMd5info}"/> <!-- 订单数字指纹 -->
+		<br/><input type="hidden" name="v_pmode" value="$!{payFlow.VPmode}"/>
+		
+		<br/><input type=hidden value="提交"> 
+	</form>
+	<script type="text/javascript">
+       document.form.submit();
+    </script>
+	<script type="text/javascript" src="$request.contextPath/js/payease/selectbank.js?version=$!{jsversion}"></script>
+</body>
+</html>
+

@@ -1,0 +1,138 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>网上支付</title>
+	<meta charset="utf-8">	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource}/dhs/mos/css/inbox/remind.css?version=$!{jsversion}" />
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource_css}/seller/product/managementproducts/general_popup_box.css?version=$!{jsversion}" />
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource_css}/seller/product/managementproducts/lscommon.css?version=$!{jsversion}" />
+	<link rel="stylesheet" type="text/css" href="http://$!{dhresource_css}/seller/htranslate/formSimulation.css?version=$!{jsversion}"/>
+    <link rel="stylesheet" type="text/css" href="http://$!{dhresource_css}/seller/htranslate/hTranslate.css?version=$!{jsversion}" />
+		
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/syi/matrix/jquery.simplemodal2.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource}/2008/web20/seller/js/syi/matrix/json2.min.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource}/dhs/fob/js/global/dhgate.cookie-1.0.js?version=$!{jsversion}"></script>
+</head>
+<body>
+	<div class="mainpay">
+		<div class="payMoney">
+			$!{selectBankForm.payDesc}<br>
+			订单号：$!{selectBankForm.orderNumber}
+			<p>应付金额:<span>&nbsp;￥&nbsp;$!{selectBankForm.payAmount}</span></p>
+    	</div>
+        <div class="wayPay">
+        	请选择付款方式：<span>网银支付</span>
+        </div>
+        <div class="bankPay">
+        	<div class="bankwind">
+                <form class="WellForm">
+					<input type="hidden" id="orderId" name="selectBankForm.orderId" value="$!{selectBankForm.orderId}" />
+					<input type="hidden" id="businessId" name="selectBankForm.businessId" value="$!{selectBankForm.businessId}" />
+					<input type="hidden" id="channelId" name="selectBankForm.channelId" value="$!{selectBankForm.channelId}" />
+					
+                    <div class="WellRadio j-pay-bank-radio WellRadioH"><input type="radio" class="" value="9" checked="checked" name="bank" id="bank1"></div>
+                    <label class="bankimg1 j-pay-bank ls-border" for="bank1">中国工商银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="3" name="bank" id="bank2"></div>
+                    <label class="bankimg2 j-pay-bank" for="bank2">招商银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="4" name="bank" id="bank3"></div>
+                    <label class="bankimg3 j-pay-bank" for="bank3">中国建设银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="67" name="bank" id="bank4"></div>
+                    <label class="bankimg4 j-pay-bank" for="bank4">交通银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="43" name="bank" id="bank5"></div>
+                    <label class="bankimg5 j-pay-bank" for="bank5">中国农业银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="69" name="bank" id="bank6"></div>
+                    <label class="bankimg6 j-pay-bank" for="bank6">上海浦东发展银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="40" name="bank" id="bank7"></div>
+                    <label class="bankimg7 j-pay-bank" for="bank7">平安银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="74" name="bank" id="bank8"></div>
+                    <label class="bankimg8 j-pay-bank" for="bank8">光大银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="28" name="bank" id="bank9"></div>
+                    <label class="bankimg9 j-pay-bank" for="bank9">民生银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="50" name="bank" id="bank10"></div>
+                    <label class="bankimg10 j-pay-bank" for="bank10">北京银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="60" name="bank" id="bank11"></div>
+                    <label class="bankimg11 j-pay-bank" for="bank11">华夏银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="33" name="bank" id="bank12"></div>
+                    <label class="bankimg12 j-pay-bank" for="bank12">兴业银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="16" name="bank" id="bank13"></div>
+                    <label class="bankimg13 j-pay-bank" for="bank13">中信银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="44" name="bank" id="bank14"></div>
+                    <label class="bankimg14 j-pay-bank" for="bank14">广东发展银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="75" name="bank" id="bank15"></div>
+                    <label class="bankimg15 j-pay-bank" for="bank15">北京农村商业银行</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="13" name="bank" id="bank16"></div>
+                    <label class="bankimg16 j-pay-bank" for="bank16">顺德农村信用合作社</label>
+					
+                    <div class="WellRadio j-pay-bank-radio"><input type="radio" value="85" name="bank" id="bank17"></div>
+                    <label class="bankimg17 j-pay-bank" for="bank17">中国银行</label>
+                    <div style="clear:both"></div>
+                </form>
+            </div>
+        </div>
+		<input type="button" name="btn_lsPay" value="立即支付" class="ls-bottonOne j-pay-submit">
+	</div>
+	<div style="display: none;" class="colright">
+        <div data-editor="top-banner" class="commonrbox">
+            <ul id="cutoverList" class="tabcon" style="top: -120px;">
+            <li><a href="http://seller.dhgate.com/promotion/223-anniversary.html"><img width="240" height="120" src="http://www.dhresource.com/cms/upload/infoimg/2015/07/02/e14ed83457ba4184afffa47c879cd2fe.jpg"></a></li><li><a href="http://seller.dhgate.com/promotion/207-DATE.html"><img width="240" height="120" src="http://www.dhresource.com/cms/upload/infoimg/2015/07/08/55d6d0287448428ea10e2a2d5ad87cd1.jpg"></a></li><li><a href="http://seller.dhgate.com/seller/pro/369lp.html"><img width="240" height="120" src="http://www.dhresource.com/cms/upload/infoimg/2015/07/08/a7ece565047b4206a7633d92e4e284b1.jpg"></a></li></ul>
+            <p id="cutoverButton" class="tabnav"><i class=""></i><i class="on"></i><i class=""></i></p>
+        </div> 
+        <div data-editor="bottom-banner" class="commonrbox adv2 mt20">
+            <ul id="cutoverList2" class="tabcon" style="top: -190px;">
+            <li><a href="http://seller.dhgate.com/promotion/209-zhaomu2.html"><img width="240" height="190" src="http://www.dhresource.com/cms/upload/infoimg/2015/07/08/4cab9b6aefba46d58dc0c70b9ba30b5e.jpg"></a></li><li><a href="http://seller.dhgate.com/promotion/117-window.html"><img width="240" height="190" src="http://www.dhresource.com/cms/upload/infoimg/2015/07/08/f6ae70cc6ebc4821b5aadf210965d8b1.jpg"></a></li><li><a href="http://seller.dhgate.com/promotion/154-pricing2015.html?d=hddingjia2015"><img width="240" height="190" src="http://www.dhresource.com/cms/upload/infoimg/2015/07/08/efcfece178094914bb68081507b484ff.jpg"></a></li></ul>
+            <p id="cutoverButton2" class="tabnav"><i class=""></i><i class="on"></i><i class=""></i></p>
+        </div>
+    </div>
+	<div id="modalContainer" class="modalContainer j-pay-confirm" style="z-index: 3100; display: none;">
+		<a title="Close" class="modalCloseImg modalClose"></a>
+		<div style="width: 360px; display: block;" class="tc_warp modalData">
+    		<div class="tc_title">
+    			<dl>
+					<dt>操作提示</dt>
+    				<dd><a class="closebtn j-pay-confirm-close" href="javascript:void(0);"><span class="lsClose"></span></a></dd>
+    			</dl>
+    		</div>
+    		<div class="tc_main">
+    			<div class="tc_content">
+    				<div class="box1">
+    					<p class="p4">请您在新打开的网上银行页面进行支付，<br>支付完成前请不要关闭该窗口。</p>
+						<div class="tc_content_button center">
+							<button class="closebtn j-pay-complete" type="button">
+								<span class="button1_lt" style="color:#333">
+									<span class="button1_ri">已完成支付</span>
+								</span>
+							</button>&nbsp;&nbsp;&nbsp;&nbsp;
+							<button class="closebtn j-pay-failed" type="button">
+								<span class="button2_lt" style="color:#333">
+									<span class="button2_ri">支付遇到问题</span>
+								</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="http://$!{dhresource_js}/seller/htranslate/formSimulation.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="http://$!{dhresource_js}/seller/message/listener.js?version=$!{jsversion}"></script>
+	<script type="text/javascript" src="$request.contextPath/js/payease/selectbank.js?version=$!{jsversion}"></script>
+</body>
+</html>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/decorators">
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+    <excludes>
+        <pattern>/nodecorate/*</pattern>
+        <pattern>/styles/*</pattern>
+        <pattern>/scripts/*</pattern>
+        <pattern>/images/*</pattern>
+        <pattern>/dojo/*</pattern>
+        <pattern>/assets/*</pattern>
+        <pattern>/assets/*</pattern>
+        <pattern>/callbackBusiness.do*</pattern>
+        <pattern>/payease/payment.do*</pattern>
+        <pattern>/content/callback/callback.vm*</pattern>
+    </excludes>
+
+	<decorator name="isblank" page="/decorators/blank.vm" >
+		<pattern>/index/*</pattern>
+    </decorator>  
+    <decorator name="sellerpay" page="/decorators/mydhgateDmrs.vm">
+        <pattern>/*</pattern>
+    </decorator>
+
+</decorators>

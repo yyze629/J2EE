@@ -1,0 +1,41 @@
+<html>
+	<head>
+        <title>lock</title>
+		<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+    </head>
+
+	<body>
+		<ul class="nav nav-pills">
+			<li class="funcnav" id="liDemo"><a href="#">memchaced 锁</a></li>
+		</ul>
+		
+		<div class="hero-unit span9 funcinfo" id="functionDemo">
+			$docHtml
+		</div>
+		
+		<script>
+		$(function(){
+			$(".funcnav").click(function(){
+				$(".funcinfo").hide();
+				$(".funcnav").removeClass("active");
+				$(this).addClass("active");
+				console.log("function" + $(this).attr("id").substring(2));
+				var showid= "function" + $(this).attr("id").substring(2);
+				$("#" + showid).show();
+			});
+			
+			$("#liDemo").click();
+		});
+    </script>
+    </body>
+	
+</html>
+	
