@@ -12,7 +12,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.yinyang.yy.utils.HttpClientUtils;
 
 public class DownLoadUtil
 {
